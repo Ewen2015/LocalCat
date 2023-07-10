@@ -1,0 +1,5 @@
+{
+    "REGION_NAME": "cn-northwest-1",
+    "S3_MODEL": "s3://hugging-face/llm/falcon-7b-model.tar.gz",
+    "ENDPOINT_NAME": "HF-FALCON-7B-MODEL-20230710-141220"
+}

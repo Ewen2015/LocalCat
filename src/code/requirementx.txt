@@ -1,0 +1,2 @@
+einops==0.6.1
+cpm-kernels==1.0.11

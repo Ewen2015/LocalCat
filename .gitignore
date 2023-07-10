@@ -1,3 +1,9 @@
+# Models
+notebook/._falcon-7b
+src/falcon-7b*
+notebook/falcon-7b/*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
