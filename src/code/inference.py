@@ -2,7 +2,7 @@ import torch
 import transformers
 import torch.nn.functional as F
 
-model_name = "falcon-7b"
+model_name = "falcon-7b-instruct"
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_name,trust_remote_code=True)
 

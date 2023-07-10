@@ -1,5 +1,8 @@
 {
     "REGION_NAME": "cn-northwest-1",
-    "S3_MODEL": "s3://hugging-face/llm/falcon-7b-model.tar.gz",
-    "ENDPOINT_NAME": "HF-FALCON-7B-MODEL-20230710-141220"
+    "MODEL_NAME": "falcon-7b-instruct",
+    "S3_MODEL": "s3://hugging-face/llm/falcon-7b-instruct.tar.gz",
+    "ENDPOINT_NAME": "HF-FALCON-7B-INSTRUCT-20230710-141220",
+    
+    "INSTANCE_TYPE": "ml.g4dn.2xlarge"
 }
