@@ -1,3 +1,6 @@
+import os 
+os.execute("pip install einops")
+
 import torch
 import transformers
 import torch.nn.functional as F
