@@ -2,7 +2,7 @@ import torch
 import transformers
 import torch.nn.functional as F
 
-model_name = "THUDM/chatglm-6b"
+model_name = "chatglm2-6b"
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
 
