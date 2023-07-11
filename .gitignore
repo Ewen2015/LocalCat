@@ -3,7 +3,7 @@ notebook/._falcon-7b
 src/falcon-7b*
 notebook/falcon-7b/*
 chatglm2/chatglm2-6b/*
-chatglm2/chatglm2-6b
+chatglm2/chatglm2-6b/
 *.gz
 
 # Byte-compiled / optimized / DLL files
