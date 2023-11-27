@@ -1,4 +1,12 @@
+pandas==2.8.0
 cpm-kernels==1.0.11
-transformers==4.27.1
 sentencepiece==0.1.99
 sagemaker==2.169.0
+protobuf 
+transformers==4.30.2 
+cpm_kernels 
+torch>=2.0 
+gradio 
+mdtex2html 
+sentencepiece 
+accelerate
