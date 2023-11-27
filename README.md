@@ -10,6 +10,7 @@ LocalCat enables users to deploy large language models (LLMs) from Hugging Face 
 
 ## Model Download
 
+### Mac
 ```bash
 brew install git-lfs
 git clone https://github.com/THUDM/ChatGLM3.git
