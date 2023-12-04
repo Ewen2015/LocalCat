@@ -59,7 +59,6 @@ class ContentHandler(LLMContentHandler):
         # return response_json[0]["generated_text"]
         return response_json
 
-
 content_handler = ContentHandler()
 
 
