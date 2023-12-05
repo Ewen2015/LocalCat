@@ -9,7 +9,7 @@ from langchain.prompts import PromptTemplate
 
 
 predictor = HuggingFacePredictor(
-    endpoint_name='CHATGLM2-6B-INT4-20231204-030044'
+    endpoint_name='CHATGLM2-6B-INT4-20231205-060946'
 )
 ENDPOINT_NAME = predictor.endpoint
 session = boto3.session.Session()
