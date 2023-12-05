@@ -40,17 +40,24 @@ Go to [code](notebook/test_langchain.py) for more details.
 
 ## Model Download
 
+### HuggingFace
+```bash
+cd ~/.cache/huggingface/hub/
+```
+
+### `git-lfs`
 - Step1: Install `git-lfs` [here](https://github.com/git-lfs/git-lfs?utm_source=gitlfs_site&utm_medium=installation_link&utm_campaign=gitlfs#installing)
 - Step2: Clone model repo.
 - Step3: Play with your models.
 
-### Step 1
-#### Mac
+<detials>
+#### Step 1
+##### Mac
 ```bash
 brew install git-lfs
 ```
 
-#### Linux
+##### Linux
 ```bash
 # yum/rpm repos: 
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
@@ -61,7 +68,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 sudo apt-get install git-lfs
 ```
 
-### Step 2
+#### Step 2
 ```bash
 git clone https://github.com/THUDM/ChatGLM3.git
 
