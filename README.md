@@ -2,7 +2,9 @@
 
 LocalCat enables users to deploy large language models (LLMs) from Hugging Face to local environments, such as personal laptops or cloud platforms like AWS.
 
-## GLM
+## LLMs
+
+### GLM
 
 - Model: [THUDM/chatglm-6b](https://huggingface.co/THUDM/chatglm-6b)
 - Model: [THUDM/chatglm2-6b](https://huggingface.co/THUDM/chatglm2-6b)
@@ -11,6 +13,8 @@ LocalCat enables users to deploy large language models (LLMs) from Hugging Face 
 ## Model Download
 
 ### HuggingFace
+
+<details><summary>Code</summary>
 
 ```python
 from transformers import AutoTokenizer, AutoModel
@@ -27,7 +31,9 @@ print(response)
 response, history = model.chat(tokenizer, "晚上睡不着应该怎么办", history=history)
 print(response)
 ```
+</details>
 
+The model is downloaded to the following path.
 ```bash
 cd ~/.cache/huggingface/hub/
 ```
