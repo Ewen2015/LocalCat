@@ -1,0 +1,5 @@
+sentencepiece==0.1.99
+transformers==4.30.2 
+torch>=2.0
+pydantic==1.10.8
+nltk==3.8.1

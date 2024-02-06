@@ -7,6 +7,10 @@ chatglm2/chatglm2-6b/
 chatglm2-6b-int4/chatglm2-6b-int4
 chatglm2-6b-int4/chatglm2-6b-int4/*
 *.gz
+model/*
+
+# data
+data/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
