@@ -12,6 +12,7 @@ chatglm2-6b-int4/chatglm2-6b-int4/*
 __pycache__/
 *.py[cod]
 *$py.class
+.ipynb_checkpoints/*
 
 # C extensions
 *.so
