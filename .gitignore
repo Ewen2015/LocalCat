@@ -2,12 +2,15 @@
 notebook/._falcon-7b
 src/falcon-7b*
 notebook/falcon-7b/*
-chatglm2/chatglm2-6b/*
-chatglm2/chatglm2-6b/
-chatglm2-6b-int4/chatglm2-6b-int4
-chatglm2-6b-int4/chatglm2-6b-int4/*
+models/chatglm2-6b/*
+models/chatglm2/chatglm2-6b/
+models/chatglm2-6b-int4/chatglm2-6b-int4
+models/chatglm2-6b-int4/chatglm2-6b-int4/*
+models/chatglm3/chatglm3-6b/*
+models/chatglm3/chatglm3-6b
+models/chatglm3/*
 *.gz
-model/*
+*.bin
 
 # data
 data/*
