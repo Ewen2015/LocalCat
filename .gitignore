@@ -9,7 +9,8 @@ models/chatglm2-6b-int4/chatglm2-6b-int4/*
 models/chatglm3/chatglm3-6b/*
 models/chatglm3/chatglm3-6b
 models/chatglm3/*
-model/*
+models/*
+models/mbart-finetuned-cn2en-09022024/*
 *.gz
 *.bin
 
