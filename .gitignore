@@ -9,6 +9,7 @@ models/chatglm2-6b-int4/chatglm2-6b-int4/*
 models/chatglm3/chatglm3-6b/*
 models/chatglm3/chatglm3-6b
 models/chatglm3/*
+model/*
 *.gz
 *.bin
 
