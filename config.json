@@ -1,8 +1,0 @@
-{
-    "MODEL_NAME": "chatglm-6b",
-    "S3_MODEL": "s3://hugging-face/llm/chatglm-6b.tar.gz",
-    "ENDPOINT_NAME": "HF-FALCON-7B-INSTRUCT-20230710-141220",
-
-    "REGION_NAME": "cn-northwest-1",
-    "INSTANCE_TYPE": "ml.g4dn.2xlarge"
-}
