@@ -11,7 +11,7 @@ authors = [
 ]
 description = "Fine-tune Large Language Models locally."
 readme = "README.md"
-license = {file = "LICENSE"}
+license = {file = "LICENSE.txt"}
 keywords = ["llm", "finetune", "ai", "aws"]
 classifiers = [
     "Programming Language :: Python :: 3",
