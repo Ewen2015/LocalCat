@@ -1,0 +1,1 @@
+cp Translate.py ../src/LocalCat/
