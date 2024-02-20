@@ -7,6 +7,8 @@ email:      wolfgangwong2012@gmail.com
 license:    Apache License 2.0
 """
 
+from tqdm import tqdm
+import pandas as pd
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
@@ -54,3 +56,29 @@ class Translate:
         translated_text = self.tokenizer.decode(translated_output[0], skip_special_tokens=True)
 
         return translated_text
+
+    def translator_batch(self, df, col_src='Chinese', col_tgt='English'):
+        """
+        Translate a batch of text from one language to another using a provided translation
+        function.
+
+        Args:
+            df (pd.DataFrame): The Pandas DataFrame containing the text to translate.
+            col_src (str, optional): The name of the column containing the source language text. Defaults to "Chinese".
+            col_tgt (str, optional): The name of the column to store the translated text. Defaults to "English".
+
+        Returns:
+            pd.DataFrame: The original DataFrame with the translated text added to the specified target column.
+
+        Raises:
+            AttributeError: If the specified columns (`col_src` or `col_tgt`) are not found in the DataFrame.
+
+        Prints:
+            The total time taken for the translation and the average speed per item.
+        """
+        
+        tqdm.pandas()
+
+        df[col_tgt] = df[col_src].progress_apply(lambda x: self.translator(x))
+
+        return df
