@@ -44,6 +44,7 @@ cd ~/.cache/huggingface/hub/
 - Step3: Play with your models.
 
 <details><summary>Details</summary>
+
 #### Step 1
 ##### Mac
 ```bash
