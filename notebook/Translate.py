@@ -121,6 +121,17 @@ class Translate:
         return dataset
 
     def tokenize_dataset(self, max_length_input=512, max_length_target=512, prefix=''):
+        """
+        Preprocesses a dataset of text pairs for machine translation models.
+
+        Args:
+            max_length_input (int): Maximum length of the input sequence (default: 512).
+            max_length_target (int): Maximum length of the target sequence (default: 512).
+            prefix (str, optional): String to prepend to each source language sentence (default: ''). T5 model requires a special prefix to put before the inputs, you should adopt the following code for defining the prefix. For mBART and MarianMT prefixes will remain blank.
+
+        Returns:
+            datasets.Dataset: The original dataset transformed with tokenized input, target sequences, and labels.
+        """
         self.max_length_input = max_length_input
         self.max_length_target = max_length_target
 
@@ -137,11 +148,30 @@ class Translate:
         return tokenized_dataset
     
     def postprocess_text(self, preds, labels):
+        """
+        Removes leading and trailing whitespaces from predicted and label text sequences.
+
+        Args:
+            preds (list): List of predicted text sequences.
+            labels (list): List of label text sequences.
+
+        Returns:
+            tuple: A tuple containing the postprocessed predicted and label sequences.
+        """
         preds = [pred.strip() for pred in preds]
         labels = [[label.strip()] for label in labels]
         return preds, labels
 
     def compute_metrics(self, eval_preds):
+        """
+        Computes evaluation metrics for machine translation model predictions.
+
+        Args:
+            eval_preds (tuple): Tuple containing predicted and label sequences.
+
+        Returns:
+            dict: Dictionary containing computed evaluation metrics.
+        """
         metric = evaluate.load("sacrebleu")
         meteor = evaluate.load('meteor')
         
@@ -169,7 +199,34 @@ class Translate:
                  df, train_size=0.9, col_src='Chinese', col_tgt='English', 
                  max_length_input=512, max_length_target=512, prefix='',
                  finetuned_model_path="model", batch_size=4):
-        
+        """
+        Fine-tunes a pre-trained Seq2Seq model on a custom dataset.
+
+        Args:
+            df (pandas.DataFrame): DataFrame containing source and target language columns.
+            train_size (float, optional): Proportion of data to use for training (default: 0.9).
+            col_src (str, optional): Column name for source language text (default: 'Chinese').
+            col_tgt (str, optional): Column name for target language text (default: 'English').
+            max_length_input (int, optional): Maximum length of input sequences (default: 512).
+            max_length_target (int, optional): Maximum length of target sequences (default: 512).
+            prefix (str, optional): String to prepend to each source language sentence (default: '').
+            finetuned_model_path (str, optional): Path to save the fine-tuned model (default: "model").
+            batch_size (int, optional): Batch size for training and evaluation (default: 4).
+
+        Returns:
+            None: Saves the fine-tuned model and prints evaluation results.
+
+        This function fine-tunes a pre-trained Seq2Seq model on a given dataset for machine translation. It performs the following steps:
+
+        1. Generates a training dataset from the provided DataFrame.
+        2. Tokenizes the dataset using the specified parameters and prefix.
+        3. Defines training arguments for the fine-tuning process.
+        4. Creates a data collator for efficient batch processing.
+        5. Initializes a Seq2SeqTrainer object with the model, arguments, and datasets.
+        6. Trains the model on the training dataset.
+        7. Saves the fine-tuned model to the specified path.
+        8. Evaluates the model on the test dataset and prints the results.
+        """
         self.dataset = self.generate_dataset(df, 
                                              train_size=train_size, 
                                              col_src=col_src, col_tgt=col_tgt)
