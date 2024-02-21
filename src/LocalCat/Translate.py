@@ -139,11 +139,11 @@ class Translate:
 
         def tokenizer(case):
             inputs = [prefix + i[self.src_lang] for i in case['translation']]
-            targets = [i[self.tgt_lang] for i in case['translation']]
+            labels = [i[self.tgt_lang] for i in case['translation']]
             model_inputs = self.tokenizer(inputs, max_length=self.max_length_input, truncation=True)
-            with self.tokenizer.as_target_tokenizer():
-                labels = self.tokenizer(targets, max_length=self.max_length_target, truncation=True)
-            model_inputs["labels"] = labels["input_ids"]
+            encoded_labels = self.tokenizer(text_target=labels, max_length=self.max_length_target, truncation=True)
+
+            model_inputs["labels"] = encoded_labels["input_ids"]
             return model_inputs
 
         tokenized_dataset = self.dataset.map(tokenizer, batched=True)
