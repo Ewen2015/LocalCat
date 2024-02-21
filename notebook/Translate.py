@@ -25,8 +25,8 @@ class Translate:
     """
     def __init__(self, 
                  model_name_or_path='facebook/mbart-large-50-many-to-one-mmt', 
-                 src_lang='zh', 
-                 tgt_lang='en'):
+                 src_lang='zh_CN', 
+                 tgt_lang='en_XX'):
         """
         Initializes the Translate class.
 
@@ -40,13 +40,15 @@ class Translate:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
         # Load tokenizer and model
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
-        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name_or_path).to(self.device)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_or_path)
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(self.model_name_or_path).to(self.device)
         
-        self.src_lang = src_lang
-        self.tgt_lang = tgt_lang
-        self.tokenizer.src_lang = self.src_lang
-        self.tokenizer.tgt_lang = self.tgt_lang
+        self.tokenizer.src_lang = src_lang
+        self.tokenizer.tgt_lang = tgt_lang
+        
+        self.src_lang = src_lang.split('_')[0]
+        self.tgt_lang = tgt_lang.split('_')[0]
+        
 
     def translator(self, text, max_new_tokens=500):
         """
@@ -198,7 +200,8 @@ class Translate:
     def finetune(self, 
                  df, train_size=0.9, col_src='Chinese', col_tgt='English', 
                  max_length_input=512, max_length_target=512, prefix='',
-                 finetuned_model_path="model", batch_size=4):
+                 finetuned_model_path="model", batch_size=4, save_total_limit=3,
+                 evaluation_strategy="epoch", learning_rate=2e-5, weight_decay=0.01, num_train_epochs=1):
         """
         Fine-tunes a pre-trained Seq2Seq model on a custom dataset.
 
@@ -236,12 +239,12 @@ class Translate:
         self.args = Seq2SeqTrainingArguments(
            output_dir=finetuned_model_path,
            evaluation_strategy="epoch",
-           learning_rate=2e-5,
+           learning_rate=learning_rate,
            per_device_train_batch_size=batch_size,
            per_device_eval_batch_size=batch_size,
-           weight_decay=0.01,
-           save_total_limit=3,
-           num_train_epochs=1,
+           weight_decay=weight_decay,
+           save_total_limit=save_total_limit,
+           num_train_epochs=num_train_epochs,
            predict_with_generate=True,
         )
 
