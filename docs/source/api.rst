@@ -4,6 +4,6 @@ LocalCat API
 Translation
 ==============================
 
-.. autofunction:: localcat.translator
+.. autofunction:: localcat.Translation.translator
 
-.. autofunction:: localcat.translator_batch
+.. autofunction:: localcat.Translation.translator_batch
