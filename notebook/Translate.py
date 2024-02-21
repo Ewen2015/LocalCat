@@ -142,9 +142,14 @@ class Translate:
         return preds, labels
 
     def compute_metrics(self, eval_preds):
+        metric = evaluate.load("sacrebleu")
+        meteor = evaluate.load('meteor')
+        
         preds, labels = eval_preds
+        
         if isinstance(preds, tuple):
             preds = preds[0]
+
         decoded_preds = self.tokenizer.batch_decode(preds, skip_special_tokens=True)
         labels = np.where(labels != -100, labels, self.tokenizer.pad_token_id) # Replace -100 in the labels as we can't decode them.
         decoded_labels = self.tokenizer.batch_decode(labels, skip_special_tokens=True)
@@ -152,11 +157,12 @@ class Translate:
         
         result = metric.compute(predictions=decoded_preds, references=decoded_labels)
         meteor_result = meteor.compute(predictions=decoded_preds, references=decoded_labels)
-        prediction_lens = [np.count_nonzero(pred != slef.tokenizer.pad_token_id) for pred in preds]
+        prediction_lens = [np.count_nonzero(pred != self.tokenizer.pad_token_id) for pred in preds]
         result = {'bleu' : result['score']}
         result["gen_len"] = np.mean(prediction_lens)
         result["meteor"] = meteor_result["meteor"]
         result = {k: round(v, 4) for k, v in result.items()}
+        
         return result
     
     def finetune(self, 
@@ -183,9 +189,6 @@ class Translate:
         )
 
         self.data_collator = DataCollatorForSeq2Seq(tokenizer=self.tokenizer, model=self.model)
-
-        metric = evaluate.load("sacrebleu")
-        meteor = evaluate.load('meteor')
 
         self.trainer = Seq2SeqTrainer(
             model=self.model,
