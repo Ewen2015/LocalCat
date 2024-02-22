@@ -23,7 +23,6 @@ python:
     - requirements: docs/requirements.txt
     - method: pip
       path: .
-      extra_requirements:
-        - localcat
+    # extra_requirements:
     # - method: pip
     #   path: another/package
