@@ -26,5 +26,5 @@ Repository = "https://github.com/Ewen2015/LocalCat.git"
 Issues = "https://github.com/Ewen2015/LocalCat/issues"
 
 [tool.setuptools.dynamic]
-version = {attr = "LocalCat.__version__"}
+version = {attr = "localcat.__version__"}
 dependencies = {file = ["requirements.txt"]}
