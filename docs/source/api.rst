@@ -4,5 +4,5 @@ LocalCat API
 Translation
 ==============================
 
-.. autoclass:: localcat.Translate
+.. autoclass:: localcat.Translate.Translate
    :members: 
