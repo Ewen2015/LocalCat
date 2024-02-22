@@ -7,3 +7,4 @@ evaluate==0.4.1
 accelerate==0.26.1
 sacrebleu==2.4.0
 nltk==3.8.1
+tqdm==4.64.1
