@@ -13,14 +13,7 @@ import os
 import sys
 
 # for separate source and build
-sys.path.insert(0, os.path.abspath("../.."))
-
-import subprocess
-
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-install("localcat")
+sys.path.insert(0, os.path.abspath("../../src"))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
