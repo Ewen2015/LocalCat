@@ -1,4 +1,4 @@
-# pip install -r requirementx.txt -i https://pypi.douban.com/simple
+pip install -r requirementx.txt -i https://pypi.douban.com/simple
 
 # MODEL SCOPE
 # python3 download_model.py
