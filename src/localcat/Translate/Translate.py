@@ -18,6 +18,7 @@ from transformers import DataCollatorForSeq2Seq
 from transformers import Seq2SeqTrainer
 import evaluate
 
+pd.set_option('display.max_colwidth', None)
 
 class Translate:
     """
@@ -201,7 +202,8 @@ class Translate:
                  df, train_size=0.9, col_src='Chinese', col_tgt='English', 
                  max_length_input=512, max_length_target=512, prefix='',
                  finetuned_model_path="model", batch_size=4, save_total_limit=3,
-                 evaluation_strategy="epoch", learning_rate=2e-5, weight_decay=0.01, num_train_epochs=1):
+                 evaluation_strategy="epoch", learning_rate=2e-5, weight_decay=0.01, 
+                 num_train_epochs=1, compute_metrics=True):
         """
         Fine-tunes a pre-trained Seq2Seq model on a custom dataset.
 
@@ -257,7 +259,7 @@ class Translate:
             eval_dataset=self.tokenized_dataset['valid'],
             data_collator=self.data_collator,
             tokenizer=self.tokenizer,
-            compute_metrics=self.compute_metrics,
+            compute_metrics=self.compute_metrics if compute_metrics else None,
         )
 
         self.trainer.train()

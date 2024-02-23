@@ -18,6 +18,7 @@ from transformers import DataCollatorForSeq2Seq
 from transformers import Seq2SeqTrainer
 import evaluate
 
+pd.set_option('display.max_colwidth', None)
 
 class Translate:
     """

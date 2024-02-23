@@ -1,1 +1,1 @@
-cp Translate.py ../src/LocalCat/
+cp Translate.py Local.py ../src/localcat/Translate/
