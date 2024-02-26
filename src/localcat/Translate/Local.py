@@ -21,13 +21,31 @@ from sagemaker.huggingface.model import HuggingFacePredictor
 pd.set_option('display.max_colwidth', None)
 
 class Local:
-    def __init__(self, model_path=None, model_name=None):
-        
-        self.model_path = model_path
+    """
+    This class represents a local translator.
+
+    Attributes:
+        model_name (str): The name of the model.
+        model_path (str): The path to the model.
+        s3_model (str): The S3 path of the model.
+    """
+
+    def __init__(self, model_name, model_path):
         self.model_name = model_name
-        
-    
+        self.model_path = model_path
+        self.s3_model = None
+
     def push_to_s3(self, bucket, prefix=None):
+        """
+        Pushes the model to an S3 bucket.
+
+        Args:
+            bucket (str): The name of the S3 bucket.
+            prefix (str, optional): The prefix to be added to the S3 key.
+
+        Returns:
+            None
+        """
         current_dir = os.getcwd()
         
         file_tar = f"{self.model_name}.tar.gz"
@@ -47,9 +65,21 @@ class Local:
         process = subprocess.Popen(bash_command, shell=True)
         process.wait()
         return None
-    
+
     def deploy(self, instance_type='ml.g4dn.4xlarge', 
-               transformers_version='4.37.0', pytorch_version='2.1.0', py_version='py310',):
+                transformers_version='4.37.0', pytorch_version='2.1.0', py_version='py310',):
+        """
+        Deploys the HuggingFace model to an Amazon SageMaker endpoint.
+        
+        Args:
+            instance_type (str): The type of Amazon SageMaker instance to use for deployment. Default is 'ml.g4dn.4xlarge'.
+            transformers_version (str): The version of the Transformers library to use. Default is '4.37.0'.
+            pytorch_version (str): The version of PyTorch to use. Default is '2.1.0'.
+            py_version (str): The version of Python to use. Default is 'py310'.
+        
+        Returns:
+            None
+        """
         try:
             self.role = sagemaker.get_execution_role()
         except ValueError:
@@ -75,6 +105,15 @@ class Local:
         return None
         
     def translator(self, text):
+        """
+        Translates the given text using the HuggingFace model.
+
+        Args:
+            text (str): The text to be translated.
+
+        Returns:
+            str: The translated text.
+        """
         predictor = HuggingFacePredictor(
             endpoint_name=self.endpoint_name
         )
@@ -88,8 +127,19 @@ class Local:
                 )
         result = json.loads(response['Body'].read().decode('utf-8'))[0]['generated_text']
         return result
-    
+
     def translator_batch(self, df, col_src='Chinese', col_tgt='English'):
+        """
+        Translates a batch of text in a DataFrame column using the translator method.
+
+        Args:
+            df (pandas.DataFrame): The DataFrame containing the text to be translated.
+            col_src (str, optional): The name of the source column containing the text to be translated. Defaults to 'Chinese'.
+            col_tgt (str, optional): The name of the target column to store the translated text. Defaults to 'English'.
+
+        Returns:
+            pandas.DataFrame: The DataFrame with the translated text in the target column.
+        """
         tqdm.pandas()
-        df[col_tgt] = df[col_src].progress_apply(lambda x: self.translator(x))
+        df[col_tgt] = df[col_src].progress_apply(lambda x: self.translator(x))            
         return df
