@@ -22,18 +22,20 @@ pd.set_option('display.max_colwidth', None)
 
 class Local:
     """
-    This class represents a local translator.
-
-    Attributes:
-        model_name (str): The name of the model.
-        model_path (str): The path to the model.
-        s3_model (str): The S3 path of the model.
+    Local class for model deployment in AWS.
     """
 
     def __init__(self, model_name, model_path):
-        self.model_name = model_name
-        self.model_path = model_path
-        self.s3_model = None
+            """
+            Initialize the Local object.
+
+            Args:
+                model_name (str): The name of the model.
+                model_path (str): The path to the model.
+            """
+            self.model_name = model_name
+            self.model_path = model_path
+            self.s3_model = None
 
     def push_to_s3(self, bucket, prefix=None):
         """
