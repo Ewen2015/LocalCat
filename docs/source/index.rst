@@ -6,7 +6,7 @@
 Welcome to LocalCat's documentation!
 ====================================
 
-**LocalCat** enables users to deploy large language models (LLMs) from Hugging Face to local environments, such as personal laptops or cloud platforms like AWS.
+**LocalCat** is designed to make the LLM strategy easy to implement. We provide a simple API and easy to use interface to load, fine-tune, and deploy the large deep learning models. We also provide the pre-trained models and the tools to fine-tune them on your own data.
 
 Overview
 ********
