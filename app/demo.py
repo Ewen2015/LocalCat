@@ -8,6 +8,7 @@ license:    Apache License 2.0
 
 import streamlit as st
 import pandas as pd
+from LocalCat.Translate import Translate
 
 st.set_page_config(
      page_title="LLM Translator",
@@ -19,21 +20,46 @@ st.title("LLM Translator with AI In-house")
 
 tab1, tab2, tab3 = st.tabs(["Translator", "Fine-tune", "New Request"])
 with tab1:
+
+    try:
+        model_name = f"mbart-finetuned-cn-to-en-auto"
+        model_path = f"../models/{model_name}"
+        st.info("Loading the model. This can take a while.")
+        trans = Translate(model_path)
+        model_ready = True
+    except:
+        st.warnings("The model is not available. Please check the model path.")
+        model_ready = False
+
     tab11, tab12 = st.tabs(["Chat", "Batch"])
     with tab11:
-        text = st.text_input('Input', 'text to translate')
+        text = st.text_input('Input')
+        if text is not None:
+            if model_ready:
+                result = trans.translator(text)
+            else:
+                result = "The model is not available. Please check the model path."
         st.write("Translation")
-        st.code(text)
+        st.code(result)
     with tab12:
         uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
-
+        
         if uploaded_file is not None:
-            # Read the uploaded file as DataFrame
             df = pd.read_csv(uploaded_file)
-
-            # Display the DataFrame
-            st.write("### Uploaded DataFrame")
+            if model_ready:
+                if st.button('Translate!'):
+                    df = trans.translator_batch(df, col_tgt="Translation")
+            else:
+                st.warnings("The model is not available. Please check the model path.")
+            
+            st.write("### DataFrame")
             st.dataframe(df)
+            st.download_button(
+                label="Download data as CSV",
+                data=df.to_csv().encode('utf-8'),
+                file_name='LLM_TRANSLATOR_RESULTS.csv',
+                mime='text/csv',
+            )
 
 with tab2:
     st.write("This section allows users to fine-tune the model with their own data.")
@@ -51,3 +77,8 @@ with tab3:
         ]
     )
     edited_df = st.data_editor(df)
+
+with st.sidebar:
+    st.header("About")
+    st.write("This is project is powered by [LocalCat](https://localcat.readthedocs.io).")
+    st.markdown("**LocalCat** is designed to make the LLM strategy easy to implement. It provides a simple API and an intuitive interface for loading, fine-tuning, and deploying large deep learning models. With LocalCat, you can easily fine-tune pre-trained models on your own data and leverage their power for your specific tasks.")
