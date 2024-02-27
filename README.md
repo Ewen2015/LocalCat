@@ -5,7 +5,7 @@
 ![Python Versions](https://img.shields.io/pypi/pyversions/localcat.svg)
 ![GitHub](https://img.shields.io/github/license/ewen2015/localcat)
 
-**LocalCat** is designed to make the LLM strategy easy to implement. We provide a simple API and easy to use interface to load, fine-tune, and deploy the large deep learning models. We also provide the pre-trained models and the tools to fine-tune them on your own data.
+**LocalCat** is designed to make the LLM strategy easy to implement. It provides a simple API and an intuitive interface for loading, fine-tuning, and deploying large deep learning models. With LocalCat, you can easily fine-tune pre-trained models on your own data and leverage their power for your specific tasks.
 
 ## Tasks
 ### Translation
