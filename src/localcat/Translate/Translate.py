@@ -38,7 +38,13 @@ class Translate:
         """
 
         self.model_name_or_path = model_name_or_path
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+
+        if torch.cuda.is_available():
+            self.device = "cuda"
+        elif torch.backends.mps.is_available():
+            self.device = "mps"
+        else:
+            self.device = "cpu"
 
         # Load tokenizer and model
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_or_path)

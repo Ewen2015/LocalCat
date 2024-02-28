@@ -49,7 +49,7 @@ class Local:
             None
         """
         current_dir = os.getcwd()
-        
+
         file_tar = f"{self.model_name}.tar.gz"
         key = f"{file_tar}" if prefix is None else f"{prefix}/{file_tar}"
         self.s3_model = f"s3://{bucket}/{key}"
@@ -68,17 +68,17 @@ class Local:
         process.wait()
         return None
 
-    def deploy(self, instance_type='ml.g4dn.4xlarge', 
-                transformers_version='4.37.0', pytorch_version='2.1.0', py_version='py310',):
+    def deploy(self, instance_type='ml.g4dn.4xlarge',
+               transformers_version='4.37.0', pytorch_version='2.1.0', py_version='py310'):
         """
         Deploys the HuggingFace model to an Amazon SageMaker endpoint.
-        
+
         Args:
             instance_type (str): The type of Amazon SageMaker instance to use for deployment. Default is 'ml.g4dn.4xlarge'.
             transformers_version (str): The version of the Transformers library to use. Default is '4.37.0'.
             pytorch_version (str): The version of PyTorch to use. Default is '2.1.0'.
             py_version (str): The version of Python to use. Default is 'py310'.
-        
+
         Returns:
             None
         """
@@ -87,7 +87,7 @@ class Local:
         except ValueError:
             iam = boto3.client('iam')
             self.role = iam.get_role(RoleName='sagemaker_execution_role')['Role']['Arn']
-        
+            
         huggingface_model = HuggingFaceModel(
             model_data=self.s3_model,
             role=self.role,
@@ -143,5 +143,5 @@ class Local:
             pandas.DataFrame: The DataFrame with the translated text in the target column.
         """
         tqdm.pandas()
-        df[col_tgt] = df[col_src].progress_apply(lambda x: self.translator(x))            
+        df[col_tgt] = df[col_src].progress_apply(lambda x: self.translator(x))
         return df

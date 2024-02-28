@@ -8,7 +8,8 @@ license:    Apache License 2.0
 
 import streamlit as st
 import pandas as pd
-from LocalCat.Translate import Translate
+# from LocalCat.Translate import Translate
+from Translate import Translate
 
 st.set_page_config(
      page_title="LLM Translator",
