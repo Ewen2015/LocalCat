@@ -8,6 +8,7 @@ license:    Apache License 2.0
 
 import streamlit as st
 import pandas as pd
+from PIL import Image
 from LocalCat.Translate import Translate
 
 st.set_page_config(
@@ -16,6 +17,7 @@ st.set_page_config(
      initial_sidebar_state=st.session_state.get("sidebar_state", "collapsed")
      )
 
+image = Image.open('finetune.png')
 model_name = f"mbart-finetuned-cn-to-en-auto"
 model_path = f"../models/{model_name}"
 
@@ -68,7 +70,10 @@ with tab1:
 
 with tab2:
     st.write("Here, you can fine-tune the model with your own data.")
-    st.image('finetune.png', caption='LLM Fine-tunes (Source: https://abacus.ai/llmapi)')
+    try:
+        st.image(image, caption='LLM Fine-tunes (Source: https://abacus.ai/llmapi)')
+    except:
+        pass
     st.write("Your data should contains two columns: `Chinese` and `English`. Each row is a new example for the machine to learn (so-called **machine learning**).")
     
     uploaded_file = st.file_uploader("Choose a CSV file to fine-tune", type="csv")
