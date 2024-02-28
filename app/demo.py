@@ -16,8 +16,11 @@ st.set_page_config(
      initial_sidebar_state=st.session_state.get("sidebar_state", "collapsed")
      )
 
-model_name = f"mbart-finetuned-cn-to-en-auto"
-model_path = f"../models/{model_name}"
+model_path = "../models/"
+image_path = "../images/"
+
+model_name = "mbart-finetuned-cn-to-en-auto"
+image_name = "finetune.png"
 
 st.title("✨ LLM Translator with AI In-house")
 
@@ -37,7 +40,7 @@ with tab1:
         text = st.text_input(label="Input", value=None)
         if text is not None:
             st.info("Loading the model and translating. Take a moment.")
-            trans = Translate(model_path)
+            trans = Translate(model_path+model_name)
             result = trans.translator(text)
         else:
             result = "You will see the translation here."
@@ -53,7 +56,7 @@ with tab1:
 
             if st.button('Translate'):
                 st.info(f"Loading the model. Take a coffee break.☕️")
-                trans = Translate(model_path)
+                trans = Translate(model_path+model_name)
                 st.info(f"Translating. Take a coffee break.☕️")
                 df = trans.translator_batch(df, col_tgt="Translation")
             
@@ -69,7 +72,7 @@ with tab1:
 with tab2:
     st.write("Here, you can fine-tune the model with your own data.")
     try:
-        st.image('finetune.png', caption='LLM Fine-tunes (Source: https://abacus.ai/llmapi)')
+        st.image(image_path+image_name, caption='LLM Fine-tunes (Source: https://abacus.ai/llmapi)')
     except:
         pass
     st.write("Your data should contains two columns: `Chinese` and `English`. Each row is a new example for the machine to learn (so-called **machine learning**).")
