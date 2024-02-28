@@ -19,13 +19,13 @@ st.set_page_config(
 model_name = f"mbart-finetuned-cn-to-en-auto"
 model_path = f"../models/{model_name}"
 
-st.title("LLM Translator with AI In-house")
+st.title("✨ LLM Translator with AI In-house")
 
 with st.expander("Pain Points to Solve"):
     st.write("""
     1. High cost of translation services. (1 RMB/item and we have a large and increasing customer base in China)
-    2. Inaccurate translation in industrial and brand-specific scenarios. For instance, '窝窝' is a nickname for Volvo Cars, coined by Volvo customers in China.
-    3. Difficulty transferring knowledge when transitioning to a new translation service.
+    2. Difficulty transferring knowledge when transitioning to a new translation service.
+    3. Inaccurate translation in industrial and brand-specific scenarios. For instance, '窝窝' is a nickname for Volvo Cars, coined by Volvo customers in China.
     """)
 
 tab1, tab2, tab3 = st.tabs(["Translator", "Fine-tune", "New Request"])
