@@ -25,7 +25,7 @@ class Local:
     Local class for model deployment in AWS.
     """
 
-    def __init__(self, model_name, model_path):
+    def __init__(self, model_name=None, model_path=None):
             """
             Initialize the Local object.
 
