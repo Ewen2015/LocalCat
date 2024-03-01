@@ -25,7 +25,7 @@ pip install localcat
 
 ## The Story behind LocalCat
 
-LocalCat is named after a cat named Hulu, owned by my friend Flora. The inspiration for the name came from the cat's playful and curious nature, which aligns with the goals of the LocalCat package.
+LocalCat is named after a cat named Hulu (葫芦), owned by my friend Flora. The inspiration for the name came from the cat's playful and curious nature, which aligns with the goals of the LocalCat package.
 
 <p align="center">
 <img width="320" height="426.7" src="https://github.com/Ewen2015/LocalCat/blob/main/images/hulu.jpg">
