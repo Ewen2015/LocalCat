@@ -9,15 +9,24 @@
 
 ## Tasks
 ### Translation
-LocalCat offers user-friendly tools for translation tasks, allowing the translator to be deployed as an endpoint or for batch processing of dataframes. Additionally, it provides fine-tuning capabilities for local deployment. 
+LocalCat offers user-friendly tools for translation tasks, allowing the translator to be deployed as an endpoint or for batch processing of `pandas` dataframes. Additionally, it provides fine-tuning capabilities for cloud deployment. 
 
-LocalCat's intuitive interface and efficient processing make it a valuable asset for any translation project. With its advanced features and customizable options, users can easily tailor their translations to meet specific requirements and ensure accuracy. Whether you're working on a small document or a large dataset, LocalCat has the tools you need to streamline the translation process and achieve high-quality results.
+1. Load pre-trained LLMs locally or from HuggingFace
+2. Fine-tune the LLMs
+3. Deployment as an endpoint on AWS
 
 ### Chat
-#### Retrieval Augmented Generation (RAG)
-Localcat specializes in open-source LLMs and RAG for local deployment. Localcat offers a wide range of solutions for local deployment, including custom configurations and expert support for seamless integration. With a focus on user-friendly interfaces and scalable performance, Localcat is the ideal choice for organizations looking to optimize their LLMs and RAG processes.
+(On the way. Stay tuned.)
 
 ## Install
 ```python
 pip install localcat
 ```
+
+## Story behind LocalCat
+
+The package is named after a cat named Hulu, owned by my friend Flora.
+
+<p align="center">
+<img width="500" height="500" src="https://raw.githubusercontent.com/Ewen2015/LocalCat/master/hulu.jpg">
+</p>
