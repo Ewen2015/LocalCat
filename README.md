@@ -28,5 +28,5 @@ pip install localcat
 The package is named after a cat named Hulu, owned by my friend Flora.
 
 <p align="center">
-<img width="500" height="500" src="https://github.com/Ewen2015/LocalCat/blob/main/images/hulu.jpg">
+<img width="320" height="426.7" src="https://github.com/Ewen2015/LocalCat/blob/main/images/hulu.jpg">
 </p>
