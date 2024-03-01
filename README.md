@@ -1,7 +1,7 @@
 # LocalCat
 
-![PyPI version](https://badge.fury.io/py/localcat.svg)
-![Documentation Status](https://readthedocs.org/projects/localcat/badge/?version=latest)
+[![PyPI version](https://badge.fury.io/py/localcat.svg)](https://pypi.org/project/localcat)
+[![Documentation Status](https://readthedocs.org/projects/localcat/badge/?version=latest)](https://localcat.readthedocs.io)
 ![Python Versions](https://img.shields.io/pypi/pyversions/localcat.svg)
 ![GitHub](https://img.shields.io/github/license/ewen2015/localcat)
 
