@@ -23,9 +23,9 @@ LocalCat offers user-friendly tools for translation tasks, allowing the translat
 pip install localcat
 ```
 
-## Story behind LocalCat
+## The Story behind LocalCat
 
-The package is named after a cat named Hulu, owned by my friend Flora.
+LocalCat is named after a cat named Hulu, owned by my friend Flora. The inspiration for the name came from the cat's playful and curious nature, which aligns with the goals of the LocalCat package.
 
 <p align="center">
 <img width="320" height="426.7" src="https://github.com/Ewen2015/LocalCat/blob/main/images/hulu.jpg">
