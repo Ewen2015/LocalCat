@@ -10,7 +10,7 @@ Load Pre-trained LLMs
 
 .. code-block:: Python
     
-    from LocalCat.Translation import Translation
+    from LocalCat.Translate import Translate
 
     model_mbart = "facebook/mbart-large-50-many-to-many-mmt"
 
@@ -44,6 +44,8 @@ Translate on Batch
 The data should be in the form of a `pandas` DataFrame.
 
 .. code-block:: Python
+    
+    import pandas as pd
     
     file_inference = "DATA_INFERENCE_2024.csv"
 
@@ -95,8 +97,8 @@ The following is a comparison of the translation results before and after fine-t
     
     **Fine-tuned:** In the case of turning on the air conditioner, the *electric range* drops too fast, especially when the weather is cold in winter, not turning on the air conditioner is not possible, the weather freezes, and the *electric range* drops faster.
 
-Deploy the LLM Model
-====================
+Deploy the LLM
+==============
 
 **LocalCat** also supports deploying LLMs on the cloud (AWS Sagemaker Endpoint). Deploying the model contains the following steps:
 
