@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "localcat"
 dynamic = ["version", "dependencies"]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 authors = [
   { name="Ewen Wang", email="wang.enqun@outlook.com" },
 ]
@@ -14,7 +14,7 @@ readme = "README.md"
 license = {file = "LICENSE.txt"}
 keywords = ["llm", "finetune", "ai", "aws"]
 classifiers = [
-    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.8",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
