@@ -22,7 +22,7 @@ image_path = "../images/"
 model_name = "mbart-finetuned-cn-to-en-auto"
 image_name = "finetune.png"
 
-@st.cache_resource(show_spinner="Loading model...")
+@st.cache_resource(ttl="1h", show_spinner="Loading model...")
 def load_model(model_path, model_name):
     return Translate(model_path+model_name)
 
