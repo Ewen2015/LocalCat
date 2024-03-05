@@ -22,31 +22,27 @@ image_path = "../images/"
 model_name = "mbart-finetuned-cn-to-en-auto"
 image_name = "finetune.png"
 
-st.title("✨ LLM Translator with AI In-house")
-
-with st.expander("Pain Points to Solve"):
-    st.write("""
-    1. High cost of translation services. (1 RMB/item and we have a large and increasing customer base in China)
-    2. Difficulty transferring knowledge when transitioning to a new translation service.
-    3. Inaccurate translation in industrial and brand-specific scenarios. For instance, '窝窝' is a nickname for Volvo Cars, coined by Volvo customers in China.
-    """)
+st.title("✨ Translator Powered by GenAI")
+st.write("The first GenAI powered product is here!")
+st.write("This is a translator based on the Open Source **Large Language Model (LLM)**. It is a powerful model that can accurately translate between Chinese and English in the **auto industry scenario**. It can also be fine-tuned using your own data.")
 
 tab1, tab2, tab3 = st.tabs(["Translator", "Fine-tune", "New Request"])
 with tab1:
     st.write("Here, you can translate your text by case or on batch.")
-    tab11, tab12 = st.tabs(["Chat", "Batch"])
+    tab11, tab12 = st.tabs(["One by One", "Batch"])
     with tab11:
-        st.write("###### Text to translate (Chinese)")
-        text = st.text_input(label="Input", value=None)
+        st.write("###### Text to translate")
+        text = st.text_area(label="Chinese 中文", value=None)
         if text is not None:
-            st.info("Loading the model and translating. Take a moment.")
-            trans = Translate(model_path+model_name)
-            result = trans.translator(text)
+            with st.spinner(text="Loading the model and translating. This may take a moment..."):
+                trans = Translate(model_path+model_name)
+                result = trans.translator(text)
         else:
             result = "You will see the translation here."
-        st.write("###### Translation (English)")
-        st.code(result)
+        st.write("###### Translation")
+        st.text_area(label="English", value=result)
     with tab12:
+        st.write("Your data should contains the column `Chinese`, which is source language you try to translate.")
         uploaded_file = st.file_uploader("Choose a CSV file to translate", type="csv")
         
         if uploaded_file is not None:
@@ -55,19 +51,20 @@ with tab1:
             st.dataframe(df)
 
             if st.button('Translate'):
-                st.info(f"Loading the model. Take a coffee break.☕️")
-                trans = Translate(model_path+model_name)
-                st.info(f"Translating. Take a coffee break.☕️")
-                df = trans.translator_batch(df, col_tgt="Translation")
-            
-                st.write("### Translation Results")
-                st.dataframe(df)
-                st.download_button(
-                    label="Download data as CSV",
-                    data=df.to_csv().encode('utf-8'),
-                    file_name='LLM_TRANSLATOR_RESULTS.csv',
-                    mime='text/csv',
-                )
+                with st.spinner(text="Loading the model and translating. This may take a moment..."):
+                    trans = Translate(model_path+model_name)
+
+                with st.spinner(text="Translating. Take a coffee break.☕️"):
+                    df = trans.translator_batch(df, col_tgt="Translation")
+                
+                    st.write("### Translation Results")
+                    st.dataframe(df)
+                    st.download_button(
+                        label="Download data as CSV",
+                        data=df.to_csv().encode('utf-8'),
+                        file_name='LLM_TRANSLATOR_RESULTS.csv',
+                        mime='text/csv',
+                    )
 
 with tab2:
     st.write("Here, you can fine-tune the model with your own data.")
@@ -75,6 +72,7 @@ with tab2:
         st.image(image_path+image_name, caption='LLM Fine-tunes (Source: https://abacus.ai/llmapi)')
     except:
         pass
+    st.write("We've loaded the pre-trained LLM for your. All you need to do in **Fine-tuning a LLM** is to find **labeled examples** and upload them.")
     st.write("Your data should contains two columns: `Chinese` and `English`. Each row is a new example for the machine to learn (so-called **machine learning**).")
     
     uploaded_file = st.file_uploader("Choose a CSV file to fine-tune", type="csv")
@@ -83,8 +81,12 @@ with tab2:
         st.write("### Data for Fine-tuning")
         st.dataframe(df)
 
+        if st.button('Fine-tune'):
+            st.write("☕️ Fine-tuning the model. This may take a while...")
+
 with tab3:
     st.write("Here, you can make requests to the translator based on the **latest terminology**.")
+    st.write("Please share your insights and suggestions.")
     st.write("See the following two as examples.")
     st.write("")
 
