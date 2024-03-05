@@ -22,6 +22,10 @@ image_path = "../images/"
 model_name = "mbart-finetuned-cn-to-en-auto"
 image_name = "finetune.png"
 
+@st.cache_resource(show_spinner="Loading model...")
+def load_model(model_path, model_name):
+    return Translate(model_path+model_name)
+
 st.title("✨ Translator Powered by GenAI")
 st.write("The first GenAI powered product is here!")
 st.write("This is a translator based on the Open Source **Large Language Model (LLM)**. It is a powerful model that can accurately translate between Chinese and English in the **auto industry scenario**. It can also be fine-tuned using your own data.")
@@ -34,8 +38,8 @@ with tab1:
         st.write("###### Text to translate")
         text = st.text_area(label="Chinese 中文", value=None)
         if text is not None:
-            with st.spinner(text="Loading the model and translating. This may take a moment..."):
-                trans = Translate(model_path+model_name)
+            trans = load_model(model_path, model_name)
+            with st.spinner(text="Translating. This may take a moment..."):
                 result = trans.translator(text)
         else:
             result = "You will see the translation here."
@@ -51,8 +55,7 @@ with tab1:
             st.dataframe(df)
 
             if st.button('Translate'):
-                with st.spinner(text="Loading the model and translating. This may take a moment..."):
-                    trans = Translate(model_path+model_name)
+                trans = load_model(model_path, model_name)
 
                 with st.spinner(text="Translating. Take a coffee break.☕️"):
                     df = trans.translator_batch(df, col_tgt="Translation")
