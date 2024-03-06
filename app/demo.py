@@ -63,7 +63,7 @@ with tab1:
                     st.write("### Translation Results")
                     st.dataframe(df)
                     st.download_button(
-                        label="Download data as CSV",
+                        label="Download",
                         data=df.to_csv().encode('utf-8'),
                         file_name='LLM_TRANSLATOR_RESULTS.csv',
                         mime='text/csv',
