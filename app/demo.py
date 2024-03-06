@@ -59,15 +59,15 @@ with tab1:
 
                 with st.spinner(text="Translating. Take a coffee break.☕️"):
                     df = trans.translator_batch(df, col_tgt="Translation")
-                
-                    st.write("### Translation Results")
-                    st.dataframe(df)
-                    st.download_button(
-                        label="Download",
-                        data=df.to_csv().encode('utf-8'),
-                        file_name='LLM_TRANSLATOR_RESULTS.csv',
-                        mime='text/csv',
-                    )
+            
+                st.write("### Translation Results")
+                st.dataframe(df)
+                st.download_button(
+                    label="Download",
+                    data=df.to_csv().encode('utf-8'),
+                    file_name='LLM_TRANSLATOR_RESULTS.csv',
+                    mime='text/csv',
+                )
 
 with tab2:
     st.write("Here, you can fine-tune the model with your own data.")
