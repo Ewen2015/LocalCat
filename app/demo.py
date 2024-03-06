@@ -106,3 +106,7 @@ with st.sidebar:
     st.header("About")
     st.write("This is project is powered by [LocalCat](https://localcat.readthedocs.io).")
     st.markdown("**LocalCat** is designed to make the LLM strategy easy to implement. It provides a simple API and an intuitive interface for loading, fine-tuning, and deploying large deep learning models. With LocalCat, you can easily fine-tune pre-trained models on your own data and leverage their power for your specific tasks.")
+
+    st.header("Contact")
+    st.write("Ewen Wang")
+    st.write("E-mail: wang.enqun@outlook.com")
